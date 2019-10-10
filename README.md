@@ -19,7 +19,7 @@ $ node -v
   v10.16.3
 $ yarn --version
   1.19.1
-
+```
 ### Installing
 
 After check if have node, yarn and docker, create a docker container with command bellow:
