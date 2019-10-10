@@ -12,7 +12,7 @@ To run this project, you need to get a postgres db (I use one in a docker contai
 
 > To check if docker, node and yarn are installed, run it:
 
-````shell
+```shell
 $ docker -v
   Docker version 19.03.3, build a872fc2f86
 $ node -v
@@ -20,12 +20,14 @@ $ node -v
 $ yarn --version
   1.19.1
 ```
+
 ### Installing
 
 After check if have node, yarn and docker, create a docker container with command bellow:
+
 ```shell
 $ docker docker run --name sample -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
-````
+```
 
 Next, run yarn to download all packages of project:
 
