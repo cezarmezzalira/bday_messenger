@@ -1,7 +1,9 @@
 import 'dotenv/config';
 
 import express from 'express';
+import cron from 'node-cron';
 import routes from './routes';
+import MailService from './app/services/MailService';
 
 import './database';
 
@@ -12,6 +14,7 @@ class App {
     this.middlewares();
     this.routes();
     this.exceptionHandler();
+    this.scheduler();
   }
 
   middlewares() {
@@ -26,6 +29,21 @@ class App {
   exceptionHandler() {
     this.server.use(async (err, req, res, next) => {
       return res.status(500).json({ error: `Internal Server Error: ${err}` });
+    });
+  }
+
+  scheduler() {
+    const second = '';
+    const minute = '30';
+    const hour = '*';
+    const dayOfMonth = '*';
+    const month = '*';
+    const dayOfWeek = '*';
+
+    const scheduleParams = `${second} ${minute} ${hour} ${dayOfMonth} ${month} ${dayOfWeek}`;
+
+    cron.schedule(scheduleParams, () => {
+      MailService.sendBDayEmails();
     });
   }
 }
